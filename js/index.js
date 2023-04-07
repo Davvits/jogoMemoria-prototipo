@@ -45,25 +45,31 @@ window.addEventListener('click', ({ target }) => {
             if(dificuldade.value == 1) {
                 SetPersonagensSessao(5)
                 const JogoDaMemoria = new Game(inputNome.value, personagensSessao);
+                JogoDaMemoria.startClock();
             }
             if( dificuldade.value == 2) {
                 SetPersonagensSessao(10)
                 const JogoDaMemoria = new Game(inputNome.value, personagensSessao);
+                JogoDaMemoria.startClock();
             }
             if( dificuldade.value == 3) {
                 SetPersonagensSessao(15)
                 const JogoDaMemoria = new Game(inputNome.value, personagensSessao);
+                JogoDaMemoria.startClock();
             }
             if( dificuldade.value == 4) {
                 SetPersonagensSessao(20)
                 const JogoDaMemoria = new Game(inputNome.value, personagensSessao);
+                JogoDaMemoria.startClock();
             }
             if( dificuldade.value == 5) {
                 SetPersonagensSessao(25)
                 const JogoDaMemoria = new Game(inputNome.value, personagensSessao);
+                JogoDaMemoria.startClock();
             }
 
             document.querySelector('.telaPause').classList.add('displayNone')
+            
             
     }
 })
