@@ -14,7 +14,10 @@ export default class GameMemoria {
             },
             pontos: {
                 number: 0,
-                html: document.querySelector('.pontos')
+                html: document.querySelector('.pontos'),
+                html_combo: document.querySelector('.combo'),
+                combo: 1,
+                sequencia: 0
             },
             card0 : '',
             card1 : '',
@@ -50,7 +53,7 @@ export default class GameMemoria {
         });
 
         this.loadGame();
-        this.startClock();
+        
 
     }
 
@@ -75,7 +78,8 @@ export default class GameMemoria {
             this.session.card0.firstChild.classList.add('disabled-card');
             this.session.card1.firstChild.classList.add('disabled-card');
             
-            this.addPontos(1)
+            this.addPontos()
+            this.addCombo()
     
             this.session.card0 = '';
             this.session.card1 = '';
@@ -90,10 +94,11 @@ export default class GameMemoria {
     
             this.session.card0 = '';
             this.session.card1 = '';
+
+            this.session.pontos.sequencia = 0;
     
             }, 500);
 
-           this.addPontos(-1)
         };
     }
 
@@ -146,12 +151,21 @@ export default class GameMemoria {
         clearInterval(this.session.clock.interval)
     }
 
-    addPontos = (ponto) => {
-        if(ponto < 0 && this.session.pontos.number == 0) return
+    addPontos = () => {
 
-        this.session.pontos.number += ponto;
+        this.session.pontos.number +=  this.session.pontos.combo;
         this.session.pontos.html.innerText = this.session.pontos.number
     }
+
+    addCombo = () => {
+        this.session.pontos.sequencia++;
+
+        if(this.session.pontos.sequencia % 3 !== 0) return
+        this.session.pontos.combo *= 2;
+
+        this.session.pontos.html_combo.innerText = this.session.pontos.combo;
+    }
+
     restartGame = () => {
         this.game.innerHTML = '';
 
