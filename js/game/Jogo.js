@@ -177,6 +177,7 @@ export default class GameMemoria {
         this.loadGame();
         this.startClock();
     }
+
 }
 
 

@@ -1,0 +1,26 @@
+.telaPause {
+    background: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+
+    color: white;
+    position: relative;
+
+    padding: 10px;
+
+
+}
+
+.telaPause input{
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.telaPause label{
+    margin-bottom: 10px;
+}
+
+.displayNone {
+    display: none;
+}
