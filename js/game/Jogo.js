@@ -95,7 +95,7 @@ export default class GameMemoria {
             this.session.card0 = '';
             this.session.card1 = '';
 
-            this.session.pontos.sequencia = 0;
+            this.removerCombo()
     
             }, 500);
 
@@ -166,6 +166,12 @@ export default class GameMemoria {
         this.session.pontos.html_combo.innerText = this.session.pontos.combo;
     }
 
+    removerCombo = () => {
+        this.session.pontos.sequencia = 0;
+        this.session.pontos.combo = 1;
+        this.session.pontos.html_combo.innerText = this.session.pontos.combo;
+    }
+
     restartGame = () => {
         this.game.innerHTML = '';
 
@@ -174,6 +180,10 @@ export default class GameMemoria {
 
         this.session.pontos.number = 0;
         this.session.pontos.html.innerText = 0;
+
+        this.session.pontos.combo = 0;
+        this.session.pontos.html_combo.innerText = 0;
+
         this.loadGame();
         this.startClock();
     }
