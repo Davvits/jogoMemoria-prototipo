@@ -1,5 +1,5 @@
 export default class GameMemoria {
-    constructor(jogador,personagens) {
+    constructor(jogador, personagens) {
         this.game = document.querySelector('.content');
         this.personagens = personagens;
 
@@ -57,7 +57,7 @@ export default class GameMemoria {
 
     }
 
-    checkEndGame = () => {
+    checkEndGame () {
         const disabledCards = document.querySelectorAll('.disabled-card');
     
         if ( disabledCards.length === Number(this.personagens.length) * 2){
@@ -70,7 +70,7 @@ export default class GameMemoria {
         };
     };
 
-    checkCards = () => {
+    checkCards(){
         const firstCharacter = this.session.card0.getAttribute('data-character');
         const secondCharacter = this.session.card1.getAttribute('data-character');
     
@@ -102,7 +102,7 @@ export default class GameMemoria {
         };
     }
 
-    loadGame = () => {
+    loadGame () {
 
         const dupplicateCards = [ ... this.personagens, ... this.personagens ];
     
@@ -117,7 +117,7 @@ export default class GameMemoria {
 
     };
 
-    createCard = (character) => {
+    createCard (character) {
 
         const card = GameMemoria.createElement('div', 'card');
         const front = GameMemoria.createElement('div', 'face front');
@@ -144,20 +144,30 @@ export default class GameMemoria {
     startClock = () => {
         this.session.clock.interval = setInterval(() => {
             this.session.clock.timer++;
-            this.session.clock.html.innerHTML = this.session.clock.timer;
+            
+            let seg  = Math.floor(Number(this.session.clock.timer / 60));
+            let mt = Number(this.session.clock.timer % 60);
+            
+            let zeroMt = (this.session.clock.timer % 60 ) < 10 ? "0" : "";
+            let zeroSg = (this.session.clock.timer / 60) < 10 ? '0' : "";
+
+            const template = `${zeroSg}${seg}:${zeroMt}${mt}`;
+
+            //this.session.clock.html.innerHTML = this.session.clock.timer;
+            this.session.clock.html.innerHTML = template;
         }, 1000);
     }
-    stopClock = () => {
+    stopClock () {
         clearInterval(this.session.clock.interval)
     }
 
-    addPontos = () => {
+    addPontos () {
 
         this.session.pontos.number +=  this.session.pontos.combo;
         this.session.pontos.html.innerText = this.session.pontos.number
     }
 
-    addCombo = () => {
+    addCombo () {
         this.session.pontos.sequencia++;
 
         if(this.session.pontos.sequencia % 3 !== 0) return
@@ -166,13 +176,13 @@ export default class GameMemoria {
         this.session.pontos.html_combo.innerText = this.session.pontos.combo;
     }
 
-    removerCombo = () => {
+    removerCombo () {
         this.session.pontos.sequencia = 0;
         this.session.pontos.combo = 1;
         this.session.pontos.html_combo.innerText = this.session.pontos.combo;
     }
 
-    restartGame = () => {
+    restartGame () {
         this.game.innerHTML = '';
 
         this.session.clock.timer = 0;
